@@ -47,9 +47,9 @@ We finally reached **97.48%** accuracy, using a two-layer CNN, and representatio
 4. Adding ELMo contextualized representations to simple pre-trained word embeddings provides a big improvement. This seems to come from the contextual information and not the sub-word information (especially in the case that our previous claim is right).
 5. Fine-tuning a pre-trained BERT model gives very good results, needing only a simple classification layer and no other complex architecture.
 6. To present the evaluation results in a unified manner for all 5 experiments wasn’t an easy task. So we used the appropriate transformations and our functions *y2label()*, *make_prediction()*, *find_error()*,  *accuracy_masked_class()* to a lot of tasks like in:
-   - Classification report, 
-   - Make a prediction for a test sentence, 
-   - Tag an unknown sentence, 
+   - Classification report
+   - Make a prediction for a test sentence
+   - Tag an unknown sentence
    - Frequent types of mistakes
    - Accuracy estimation during training
 
