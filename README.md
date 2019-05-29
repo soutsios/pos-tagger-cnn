@@ -29,6 +29,10 @@ So in this work we experiment with five CNN and Transformer based models that ar
 4.	Fine-tune a pre-trained BERT model ([Keras implementation using Tensorflow Hub module](https://github.com/soutsios/pos-tagger-bert)).
 5.	Fine-tune a pre-trained BERT model ([Tensorflow implementation using Uncased BERT-Base checkpoint](https://github.com/soutsios/pos-tagger-bert-tensorflow)).
 
+## CNN - Word embeddings + Character embeddings Model
+
+<img src="cnn-w2v-c2v.png" width="80%" height="80%">
+
 ## Experimental Results - Conclusions
 Sequence labeling systems traditionally require large amounts of task-specific knowledge in the form of hand-crafted features and data pre-processing. In this work, we experimented with neural network architectures that benefit from both word- and character-level representations automatically, by using **CNNs and feature-based learning** and also **BERT transformer and transfer learning**.
 The results of our 5 experiments are summarized in Table 2 where appropriate evaluation metrics are given for every experiment. A Baseline and also the best result from 3rd and 4th assignment are included.
