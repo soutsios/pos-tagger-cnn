@@ -10,6 +10,17 @@ Special care was taken for:
 1.	Reproducibility reasons -->> seed the numpy generator before every Keras Layer.
 2.	Exact accuracy estimation -->> exclude predictions for –PAD- character. To accomplish this, we use function *accuracy_masked_class(to_ignore=0)* as a new accuracy metric and *mask* variable in our *y2label(zipped, mask=0)* where from the flatted label sequence, –PAD- character is excluded.
 
+## CNNs and Tranformer Models
+**Convolutional Neural Networks** (**CNNs**), were designed to map image data to an output variable. The CNN input is traditionally two-dimensional, but can also be changed to be one-dimensional, allowing it to develop an internal representation of a one-dimensional sequence, as is the case for NLP tasks. Two of the most compelling reasons to use CNNs are speed, and context.
+As RNNs operate sequentially, the output for the second input depends on the first one and so we can’t parallelize an RNN. CNNs have no such problem, each “patch” a convolutional kernel operates on is independent of the other, meaning that we can go over the entire input layer **concurrently**. We have to stack convolutions into deep layers in order to view the entire input and each of those layers is calculated sequentially. But the calculations at each layer happen concurrently and each individual computation is small (compared to an RNN) such that in practice we get a big speed up!
+
+Following a different approach from feature-based learning, **Transfer learning** - pre-training a neural network model on a known task, 
+and then performing fine-tuning - using the trained neural network as the basis of a new purpose-specific model, was firstly known in the
+field of computer vision but can be also useful in many natural language tasks. A new simple network architecture, the **Transformer**,
+based solely on attention mechanisms, dispensing with recurrence and convolutions entirely was proposed by paper 
+<a href="https://arxiv.org/pdf/1706.03762.pdf">“Attention Is All You Need”</a>. 
+BERT makes use of Transformer, to learn contextual representations of words (or sub-words) which can then be fine-tuned with just one additional output layer to create state-of-the-art models for a wide range of NLP tasks.
+
 ## Implemented Models
 So in this work we experiment with five CNN and Transformer based models that are gradually progressing to the toughest (1-5) as follows:
 1.	A 2-layer CNN with pre-trained word embeddings.
@@ -35,7 +46,7 @@ We finally reached **97.48%** accuracy, using a two-layer CNN, and representatio
 3. Character-level CNN representations seem to not providing a remarkable boost to word only representations, something opposite to our findings in RNN models of 4th assignment. Maybe convolutions learn already something about characters ?
 4. Adding ELMo contextualized representations to simple pre-trained word embeddings provides a big improvement. This seems to come from the contextual information and not the sub-word information (especially in the case that our previous claim is right).
 5. Fine-tuning a pre-trained BERT model gives very good results, needing only a simple classification layer and no other complex architecture.
-6. To present the evaluation results in a unified manner for all 5 experiments wasn’t an easy task. So we used the appropriate transformations and our functions y2label(), make_prediction(), find_error(),  accuracy_masked_class() to a lot of tasks like in:
+6. To present the evaluation results in a unified manner for all 5 experiments wasn’t an easy task. So we used the appropriate transformations and our functions *y2label()*, *make_prediction()*, *find_error()*,  *accuracy_masked_class()* to a lot of tasks like in:
    - Classification report, 
    - Make a prediction for a test sentence, 
    - Tag an unknown sentence, 
